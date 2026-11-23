@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GMT Ball | Geiman Mini Training Ball</title>
+<style>
+:root {
+  --black: #111;
+  --red: #e3262e;
+  --gray: #f4f3f0;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--black);
+}
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font: inherit; }
+
+.announcement {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 11px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+header {
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6%;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 950;
+  letter-spacing: -2px;
+}
+.logo span { color: var(--red); }
+
+nav {
+  display: flex;
+  gap: 30px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+nav a:hover { color: var(--red); }
+
+.header-right {
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+  background: var(--gray);
+}
+
+.hero-copy {
+  padding: 90px 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.eyebrow {
+  color: var(--red);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: clamp(55px, 7vw, 95px);
+  line-height: .88;
+  letter-spacing: -6px;
+  margin: 0 0 25px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.hero-copy p {
+  color: #555;
+  line-height: 1.7;
+  max-width: 420px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  background: #111;
+  color: white;
+  padding: 17px 27px;
+  border: 1px solid #111;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  transition: .2s;
+}
+
+.btn:hover {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.hero-art {
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle, white, #d8d6d0);
+  position: relative;
+  min-height: 450px;
+}
+
+/* GMT basketball illustration */
+.ball {
+  width: min(75%, 420px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: relative;
+  background: radial-gradient(
+    circle at 30% 25%,
+    #888,
+    #333 35%,
+    #080808 75%
+  );
+  box-shadow: 25px 35px 45px #0005,
+              inset -15px -18px 25px #000;
+  transform: rotate(-20deg);
+}
+
+.ball:before,
+.ball:after {
+  content: "";
+  position: absolute;
+  border: 5px solid #aaa;
+  border-radius: 50%;
+  inset: 5% 34%;
+  transform: rotate(35deg);
+}
+
+.ball:after {
+  inset: 34% 5%;
+  transform: rotate(-35deg);
+}
+
+.ball-mark {
+  position: absolute;
+  z-index: 2;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%,-50%) rotate(-20deg);
+  color: white;
+  text-align: center;
+  font-weight: 950;
+}
+
+.ball-mark strong {
+  display: block;
+  font-size: 48px;
+  letter-spacing: -3px;
+}
+
+.ball-mark small {
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+.art-label {
+  position: absolute;
+  bottom: 8%;
+  right: 8%;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.ticker {
+  background: var(--red);
+  color: white;
+  padding: 17px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.section {
+  padding: 90px 7%;
+}
+
+.kicker {
+  color: var(--red);
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+h2 {
+  font-size: clamp(38px, 5vw, 60px);
+  line-height: .95;
+  letter-spacing: -4px;
+  text-transform: uppercase;
+  margin: 15px 0 25px;
+}
+
+.section-description {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 400px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7%;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.product-visual {
+  background: #eeede9;
+  min-height: 430px;
+  display: grid;
+  place-items: center;
+}
+
+.product-visual .ball {
+  width: min(70%, 330px);
+}
+
+.product-info h3 {
+  font-size: 48px;
+  line-height: .95;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+}
+
+.product-info p {
+  color: #777;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.tag {
+  border: 1px solid #ddd;
+  padding: 9px 12px;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 25px 0;
+}
+
+.features {
+  background: #111;
+  color: white;
+}
+
+.features .kicker { color: #ff555b; }
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #444;
+  margin-top: 45px;
+}
+
+.feature {
+  background: #111;
+  padding: 35px;
+  min-height: 200px;
+}
+
+.feature-number {
+  color: #ff555b;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.feature h3 {
+  font-size: 21px;
+  text-transform: uppercase;
+  margin-top: 30px;
+}
+
+.feature p {
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.specs {
+  max-width: 650px;
+  margin: 40px auto 0;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 12px;
+  gap: 20px;
+}
+
+.spec-row span:first-child {
+  color: #777;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.cta {
+  background: var(--red);
+  color: white;
+  padding: 75px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+.cta h2 { margin: 0; }
+
+.cta .btn {
+  background: white;
+  color: black;
+  border-color: white;
+}
+
+footer {
+  background: #111;
+  color: white;
+  padding: 45px 7%;
+}
+
+.footer-logo {
+  font-size: 35px;
+  font-weight: 950;
+}
+
+.footer-logo span { color: var(--red); }
+
+footer p {
+  color: #999;
+  font-size: 12px;
+}
+
+.copyright {
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  margin-top: 40px;
+  color: #777;
+  font-size: 10px;
+}
+
+@media(max-width: 760px) {
+  nav { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-copy { padding: 65px 8%; }
+  .hero-art { min-height: 350px; }
+  .product-grid { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .cta { display: block; }
+  .cta .btn { margin-top: 25px; }
+  .product-info h3 { font-size: 38px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+  BUILT FOR REPS. MADE FOR THE WORK.
+</div>
+
+<header>
+  <a href="#" class="logo">GMT<span>.</span></a>
+
+  <nav>
+    <a href="#product">THE BALL</a>
+    <a href="#features">WHY GMT</a>
+    <a href="#details">DETAILS</a>
+  </nav>
+
+  <div class="header-right">
+    <a href="#product">SHOP GMT →</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">GEIMAN MINI TRAINING BALL</div>
+
+    <h1>SMALL BALL.<br>BIG WORK.</h1>
+
+    <p>
+      Meet the GMT Ball — a mini basketball built
+      around the details that make a difference.
+      Get more touches, sharpen your control,
+      and make every rep count.
+    </p>
+
+    <a href="#product" class="btn">
+      DISCOVER THE GMT BALL →
+    </a>
+  </div>
+
+  <div class="hero-art">
+    <div class="ball">
+      <div class="ball-mark">
+        <strong>GMT</strong>
+        <small>GEIMAN TRAINING</small>
+      </div>
+    </div>
+
+    <div class="art-label">
+      GMT / 001 — TRAINING SERIES
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  TRAIN WITH PURPOSE &nbsp; • &nbsp;
+  CONTROL THE DETAILS &nbsp; • &nbsp;
+  MAKE EVERY REP COUNT
+</div>
+
+<section class="section" id="product">
+
+  <div class="kicker">THE FEATURED PRODUCT</div>
+
+  <h2>MEET YOUR NEW<br>TRAINING PARTNER.</h2>
+
+  <p class="section-description">
+    A focused training tool for ball-handling sessions,
+    quick-touch drills, and skill work. Take it to the gym,
+    driveway, or wherever you get your reps in.
+  </p>
+
+  <div class="product-grid">
+
+    <div class="product-visual">
+      <div class="ball">
+        <div class="ball-mark">
+          <strong>GMT</strong>
+          <small>GEIMAN TRAINING</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-info">
+
+      <span class="tag">GMT / 001 · TRAINING SERIES</span>
+
+      <h3>GEIMAN MINI<br>TRAINING BALL</h3>
+
+      <p>
+        The GMT Ball is designed as a compact training
+        basketball for focused skill sessions.
+      </p>
+
+      <div class="price">COMING SOON</div>
+
+      <a href="#details" class="btn">
+        VIEW DETAILS →
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="section features" id="features">
+
+  <div class="kicker">THE GMT MINDSET</div>
+
+  <h2>EVERY TOUCH HAS A PURPOSE.</h2>
+
+  <div class="feature-grid">
+
+    <div class="feature">
+      <div class="feature-number">01 / CONTROL</div>
+      <h3>OWN THE DETAILS</h3>
+      <p>
+        Build focused reps into your routine and pay
+        attention to the little things that shape your handle.
+      </p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-number">02 / REPETITION</div>
+      <h3>PUT IN THE WORK</h3>
+      <p>
+        A simple training companion for repeatable
+        drills and consistent practice sessions.
+      </p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-number">03 / CONFIDENCE</div>
+      <h3>BRING IT TO THE GAME</h3>
+      <p>
+        Practice with intention, track your progress,
+        and carry that confidence onto the court.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="details">
+
+  <div class="kicker">PRODUCT DETAILS</div>
+
+  <h2>MADE FOR THE REPS.</h2>
+
+  <p class="section-description">
+    Everything you need to know about the GMT Ball.
+  </p>
+
+  <div class="specs">
+
+    <div class="spec-row">
+      <span>Product</span>
+      <strong>GMT Ball / 001</strong>
+    </div>
+
+    <div class="spec-row">
+      <span>Brand</span>
+      <strong>Geiman Training</strong>
+    </div>
+
+    <div class="spec-row">
+      <span>Ball Size</span>
+      <strong>To Be Confirmed</strong>
+    </div>
+
+    <div class="spec-row">
+      <span>Construction</span>
+      <strong>To Be Confirmed</strong>
+    </div>
+
+    <div class="spec-row">
+      <span>Colorway</span>
+      <strong>GMT Black / White</strong>
+    </div>
+
+    <div class="spec-row">
+      <span>Availability</span>
+      <strong>Coming Soon</strong>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta">
+  <h2>GET YOUR REPS IN.<br>MAKE THEM COUNT.</h2>
+
+  <a href="#product" class="btn">
+    EXPLORE GMT BALL →
+  </a>
+</section>
+
+</main>
+
+<footer>
+
+  <div class="footer-logo">
+    GMT<span>.</span>
+  </div>
+
+  <p>
+    GEIMAN MINI TRAINING BALL.<br>
+    BUILT AROUND THE WORK THAT HAPPENS BEFORE THE GAME.
+  </p>
+
+  <div class="copyright">
+    © 2026 GEIMAN TRAINING · GMT BALL.
+    ALL RIGHTS RESERVED.
+  </div>
+
+</footer>
+
+</body>
+</html>
